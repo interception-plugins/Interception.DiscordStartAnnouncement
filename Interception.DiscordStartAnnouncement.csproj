@@ -39,8 +39,9 @@
     <Reference Include="com.rlabrecque.steamworks.net">
       <HintPath>..\..\lib\com.rlabrecque.steamworks.net.dll</HintPath>
     </Reference>
-    <Reference Include="Interception.Module">
-      <HintPath>..\Interception.Module\bin\Debug\Interception.Module.dll</HintPath>
+    <Reference Include="Interception.Module, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Interception.Module\bin\Release\Interception.Module.dll</HintPath>
     </Reference>
     <Reference Include="Rocket.API">
       <HintPath>..\..\lib\Rocket.API.dll</HintPath>

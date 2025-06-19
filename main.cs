@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using SDG.Unturned;
+using Steamworks;
 
 using Rocket.API;
 using Rocket.Core.Plugins;
@@ -63,7 +64,12 @@ namespace interception.plugins.discordstartannouncement {
             var wh = (webhook)cfg.webhook_settings;
             if (wh.embeds.Count > 0)
                 wh.embeds[0].add_timestamp(DateTime.UtcNow);
-            webhook_manager.send_webhook_async(main.cfg.webhook_url, wh);
+            var data = wh.serialize_json_data()
+                .Replace("%SERVER_NAME%", Provider.serverName)
+                .Replace("%SERVER_IP%", SteamGameServer.GetPublicIP().ToIPAddress().MapToIPv4().ToString())
+                .Replace("%SERVER_PORT%", Provider.port.ToString())
+                .Replace("%SERVER_CODE%", SteamGameServer.GetSteamID().ToString());
+            webhook_manager.send_webhook_async_unsafe(main.cfg.webhook_url, data, null);
         }
 
         protected override void Load() {
