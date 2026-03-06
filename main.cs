@@ -63,7 +63,7 @@ namespace interception.plugins.discordstartannouncement {
         static void on_post_level_loaded(int level) {
             var wh = (webhook)cfg.webhook_settings;
             if (wh.embeds.Count > 0)
-                wh.embeds[0].add_timestamp(DateTime.UtcNow);
+                wh.embeds[0].timestamp = DateTime.UtcNow;
             var data = wh.serialize_json_data()
                 .Replace("%SERVER_NAME%", Provider.serverName)
                 .Replace("%SERVER_IP%", SteamGameServer.GetPublicIP().ToIPAddress().MapToIPv4().ToString())
